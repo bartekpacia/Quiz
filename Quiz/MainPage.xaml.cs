@@ -14,34 +14,15 @@ public partial class MainPage : ContentPage
         BindingContext = vm;
     }
 
-    async Task OnNavigated(object sender, TappedEventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(PlayPage));
-    }
-
     private void OnCounterIncrement(object sender, EventArgs e)
     {
         count++;
-
-        UpdateButton();
+        CounterLabel.Text = $"Counter: {count}";
     }
 
     private void OnCounterDecrement(object sender, EventArgs e)
     {
         count--;
-
-        UpdateButton();
-    }
-
-    private void UpdateButton()
-    {
-        if (count == 1)
-        {
-            CounterLabel.Text = $"Clicked {count} time";
-        }
-        else
-        {
-            CounterLabel.Text = $"Clicked {count} times";
-        }
+        CounterLabel.Text = $"Counter: {count}";
     }
 }

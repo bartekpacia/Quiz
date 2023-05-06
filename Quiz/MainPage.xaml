@@ -11,38 +11,6 @@
             Padding="64"
             VerticalOptions="Center">
 
-            <Entry
-                Placeholder="Enter text"
-                Text="{Binding Text}"
-                />
-
-            <Button
-                Text="Go to play page"
-                Command="{Binding PlayCommand}"
-                />
-
-            <CollectionView Grid.Row="2" Grid.ColumnSpan="2">
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Warsaw</x:String>
-                        <x:String>Cracow</x:String>
-                        <x:String>Gliwice</x:String>
-                        <x:String>Gdańsk</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="0,5">
-                            <Frame>
-                                <Label Text="{Binding .}"/>
-                            </Frame>
-
-                        </Grid>
-                    </DataTemplate>
-
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
             <Border
                 Stroke="#C49B33"
                 StrokeThickness="4"

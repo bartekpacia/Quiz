@@ -2,11 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Quiz.PlayPage"
-             Title="PlayPage">
-    <VerticalStackLayout>
+             Title="PlayPage"
+             xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
+             x:DataType="viewmodel:PlayViewModel">
+
+    <VerticalStackLayout Padding="32">
+
         <Label 
-            Text="Play page"
+            Text="Which city is the capital of Poland?"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <CollectionView
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                ItemsSource="{Binding Answers}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+                    <Grid Padding="0,5">
+                        <Frame>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectAnswer}"
+                                        CommandParameter="{Binding .}"
+                                        />
+
+                            </Frame.GestureRecognizers>
+
+                            <Label Text="{Binding .}"/>
+                        </Frame>
+
+                    </Grid>
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
