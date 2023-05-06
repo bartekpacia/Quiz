@@ -7,5 +7,6 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(PlayPage), typeof(PlayPage));
+        Routing.RegisterRoute(nameof(CreatePage), typeof(CreatePage));
     }
 }

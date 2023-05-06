@@ -6,8 +6,8 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Quiz.ViewModels;
 
-public partial class PlayViewModel : ObservableObject {
-
+public partial class PlayViewModel : ObservableObject
+{
     // TODO: Quiz properties
     //  * List of all quizes
 
@@ -34,12 +34,7 @@ public partial class PlayViewModel : ObservableObject {
     [RelayCommand]
     void SelectAnswer(string answer)
     {
-        if (answer != goodAnswer)
-        {
-
-        }
-        else {
-
-        }
+        if (answer != goodAnswer) { }
+        else { }
     }
 }

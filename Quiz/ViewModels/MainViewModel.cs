@@ -15,4 +15,10 @@ public partial class MainViewModel : ObservableObject
     {
         await Shell.Current.GoToAsync(nameof(PlayPage));
     }
+
+    [RelayCommand]
+    async Task Create()
+    {
+        await Shell.Current.GoToAsync(nameof(CreatePage));
+    }
 }

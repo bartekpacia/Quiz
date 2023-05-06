@@ -18,6 +18,7 @@
                 Background="#2B0B98"
                 Padding="100"
                 HorizontalOptions="Center">
+
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding PlayCommand}"/>
@@ -38,6 +39,12 @@
                 Background="#2B0B98"
                 Padding="100"
                 HorizontalOptions="Center">
+
+                 <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding CreateCommand}"/>
+
+                </Border.GestureRecognizers>
 
                 <Label
                     Text="Create"
