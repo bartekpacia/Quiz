@@ -8,4 +8,3 @@ namespace Quiz;
 public class MainActivity : MauiAppCompatActivity
 {
 }
-
