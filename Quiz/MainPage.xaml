@@ -28,11 +28,20 @@
                 FontSize="18"
                 HorizontalOptions="Center" />
 
+            <Label
+                x:Name="CounterLabel"
+                Text="Counter"
+                FontSize="22"
+                HorizontalOptions="Center" />
+
             <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                Text="Increment"
+                Clicked="OnCounterIncrement"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="Decrement"
+                Clicked="OnCounterDecrement"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>

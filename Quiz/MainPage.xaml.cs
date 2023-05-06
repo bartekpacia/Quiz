@@ -1,4 +1,6 @@
-﻿namespace Quiz;
+﻿using System;
+
+namespace Quiz;
 
 public partial class MainPage : ContentPage
 {
@@ -9,15 +11,29 @@ public partial class MainPage : ContentPage
         InitializeComponent();
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    private void OnCounterIncrement(object sender, EventArgs e)
     {
         count++;
 
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
+        UpdateButton();
+    }
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+    private void OnCounterDecrement(object sender, EventArgs e)
+    {
+        count--;
+
+        UpdateButton();
+    }
+
+    private void UpdateButton()
+    {
+        if (count == 1)
+        {
+            CounterLabel.Text = $"Clicked {count} time";
+        }
+        else
+        {
+            CounterLabel.Text = $"Clicked {count} times";
+        }
     }
 }
