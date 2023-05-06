@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-android:
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
 
     steps:
       - name: Clone repository
