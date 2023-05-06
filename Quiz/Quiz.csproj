@@ -15,7 +15,7 @@
 		<ApplicationTitle>Quiz</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.quiz</ApplicationId>
+		<ApplicationId>tech.pacia.quiz</ApplicationId>
 		<ApplicationIdGuid>64df2202-2bc2-4414-8084-3ee81c8986d0</ApplicationIdGuid>
 
 		<!-- Versions -->
