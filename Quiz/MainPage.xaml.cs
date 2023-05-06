@@ -1,4 +1,6 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Quiz.ViewModels;
 
 namespace Quiz;
 
@@ -6,9 +8,15 @@ public partial class MainPage : ContentPage
 {
     int count = 0;
 
-    public MainPage()
+    public MainPage(MainViewModel vm)
     {
         InitializeComponent();
+        BindingContext = vm;
+    }
+
+    async Task OnNavigated(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(PlayPage));
     }
 
     private void OnCounterIncrement(object sender, EventArgs e)
