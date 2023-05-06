@@ -5,9 +5,39 @@
 
     <ScrollView>
         <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
+            Spacing="64"
+            Padding="64"
             VerticalOptions="Center">
+
+            <Border
+                Stroke="#C49B33"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 16"
+                Background="#2B0B98"
+                Padding="100"
+                HorizontalOptions="Center">
+
+                <Label
+                    Text="Play"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+            </Border>
+
+             <Border
+                Stroke="#C49B33"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 16"
+                Background="#2B0B98"
+                Padding="100"
+                HorizontalOptions="Center">
+
+                <Label
+                    Text="Create"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold" />
+            </Border>
 
             <Image
                 Source="dotnet_bot.png"
@@ -23,8 +53,6 @@
 
             <Label
                 Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
@@ -37,7 +65,7 @@
             <Button
                 Text="Increment"
                 Clicked="OnCounterIncrement"
-                HorizontalOptions="Center" />
+                HorizontalOptions="CenterAndExpand" />
 
             <Button
                 Text="Decrement"
