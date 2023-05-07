@@ -4,14 +4,9 @@ on:
   pull_request:
   workflow_dispatch:
 
-env:
-  DOTNET_NOLOGO: true # Disable the .NET logo
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
-  DOTNET_CLI_TELEMETRY_OPTOUT: true # Disable sending .NET CLI telemetry
-
 jobs:
   main:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
@@ -30,5 +25,14 @@ jobs:
       - name: Restore tools
         run: dotnet tool restore
 
-      - name: Verify code formatting
-        run: dotnet csharpier --check .
+      - name: Verify C# code formatting
+        run: dotnet tool run dotnet-csharpier --check .
+
+      - name: Install non-ancient Bash
+        run: brew install bash
+
+      - name: Verify XAML code formatting
+        shell: bash
+        run: |
+          shopt -s globstar
+          dotnet tool run xstyler --recursive --file Quiz/**/*.xaml --passive

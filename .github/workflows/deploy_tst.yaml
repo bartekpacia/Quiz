@@ -8,14 +8,9 @@ on:
     tags-ignore:
       - 'v*'
 
-env:
-  DOTNET_NOLOGO: true # Disable the .NET log
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
-  DOTNET_CLI_TELEMETRY_OPTOUT: true # Disable sending .NET CLI telemetry
-
 jobs:
   build-android:
-    runs-on: windows-2022
+    runs-on: macos-latest
 
     steps:
       - name: Clone repository
@@ -40,10 +35,10 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore Quiz/Quiz.csproj
 
-      - name: Build app
+      - name: Build app binary
         run: dotnet build Quiz/Quiz.csproj --configuration Release --framework net7.0-android --no-restore
 
-      - name: Upload Android Artifact
+      - name: Upload app binary
         uses: actions/upload-artifact@v3
         with:
           name: quiz.apk

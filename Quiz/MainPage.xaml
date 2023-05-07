@@ -1,39 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Quiz.MainPage">
+<ContentPage
+    x:Class="Quiz.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
+    x:DataType="viewmodel:MainViewModel">
 
     <ScrollView>
         <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
+            Padding="64"
+            Spacing="64"
             VerticalOptions="Center">
 
+            <Border
+                Padding="80"
+                Background="#2B0B98"
+                HorizontalOptions="Center"
+                Stroke="#C49B33"
+                StrokeShape="RoundRectangle 16"
+                StrokeThickness="4">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PlayCommand}" />
+
+                </Border.GestureRecognizers>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Play"
+                    TextColor="White" />
+            </Border>
+
+            <Border
+                Padding="80"
+                Background="#2B0B98"
+                HorizontalOptions="Center"
+                Stroke="#C49B33"
+                StrokeShape="RoundRectangle 16"
+                StrokeThickness="4">
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateCommand}" />
+
+                </Border.GestureRecognizers>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Create"
+                    TextColor="White" />
+            </Border>
+
             <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="dotnet_bot.png" />
 
             <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1"
+                Text="Hello, World!" />
 
             <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Text="Welcome to .NET Multi-platform App UI" />
+
+            <Label
+                x:Name="CounterLabel"
+                FontSize="22"
+                HorizontalOptions="Center"
+                Text="Counter" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                Clicked="OnCounterIncrement"
+                HorizontalOptions="CenterAndExpand"
+                Text="Increment" />
+
+            <Button
+                Clicked="OnCounterDecrement"
+                HorizontalOptions="Center"
+                Text="Decrement" />
 
         </VerticalStackLayout>
     </ScrollView>
