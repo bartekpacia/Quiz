@@ -28,5 +28,11 @@ jobs:
       - name: Verify C# code formatting
         run: dotnet tool run dotnet-csharpier --check .
 
+      - name: Install non-ancient Bash
+        run: brew install bash
+
       - name: Verify XAML code formatting
-        run: dotnet tool run xstyler --recursive --file **/*.xaml --passive
+        shell: bash
+        run: |
+          shopt -s globstar
+          dotnet tool run xstyler --recursive --file Quiz/**/*.xaml --passive
