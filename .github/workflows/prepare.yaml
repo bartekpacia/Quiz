@@ -30,5 +30,8 @@ jobs:
       - name: Restore tools
         run: dotnet tool restore
 
-      - name: Verify code formatting
-        run: dotnet csharpier --check .
+      - name: Verify C# code formatting
+        run: dotnet tool run dotnet-csharpier --check .
+
+      - name: Verify XAML code formatting
+        run: dotnet tool run xstyler --recursive --file Quiz/**/*.xaml --passive

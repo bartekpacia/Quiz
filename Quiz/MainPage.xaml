@@ -1,90 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Quiz.MainPage"
-             xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
-             x:DataType="viewmodel:MainViewModel">
+<ContentPage
+    x:Class="Quiz.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
+    x:DataType="viewmodel:MainViewModel">
 
     <ScrollView>
         <VerticalStackLayout
-            Spacing="64"
             Padding="64"
+            Spacing="64"
             VerticalOptions="Center">
 
             <Border
-                Stroke="#C49B33"
-                StrokeThickness="4"
-                StrokeShape="RoundRectangle 16"
-                Background="#2B0B98"
                 Padding="100"
-                HorizontalOptions="Center">
+                Background="#2B0B98"
+                HorizontalOptions="Center"
+                Stroke="#C49B33"
+                StrokeShape="RoundRectangle 16"
+                StrokeThickness="4">
 
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Command="{Binding PlayCommand}"/>
+                    <TapGestureRecognizer Command="{Binding PlayCommand}" />
 
                 </Border.GestureRecognizers>
 
                 <Label
-                    Text="Play"
-                    TextColor="White"
+                    FontAttributes="Bold"
                     FontSize="18"
-                    FontAttributes="Bold" />
+                    Text="Play"
+                    TextColor="White" />
             </Border>
 
-             <Border
-                Stroke="#C49B33"
-                StrokeThickness="4"
-                StrokeShape="RoundRectangle 16"
-                Background="#2B0B98"
+            <Border
                 Padding="100"
-                HorizontalOptions="Center">
+                Background="#2B0B98"
+                HorizontalOptions="Center"
+                Stroke="#C49B33"
+                StrokeShape="RoundRectangle 16"
+                StrokeThickness="4">
 
-                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Command="{Binding CreateCommand}"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateCommand}" />
 
                 </Border.GestureRecognizers>
 
                 <Label
-                    Text="Create"
-                    TextColor="White"
+                    FontAttributes="Bold"
                     FontSize="18"
-                    FontAttributes="Bold" />
+                    Text="Create"
+                    TextColor="White" />
             </Border>
 
             <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="dotnet_bot.png" />
 
             <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                SemanticProperties.HeadingLevel="Level1"
+                Text="Hello, World!" />
 
             <Label
-                Text="Welcome to .NET Multi-platform App UI"
                 FontSize="18"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Text="Welcome to .NET Multi-platform App UI" />
 
             <Label
                 x:Name="CounterLabel"
-                Text="Counter"
                 FontSize="22"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Text="Counter" />
 
             <Button
-                Text="Increment"
                 Clicked="OnCounterIncrement"
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand"
+                Text="Increment" />
 
             <Button
-                Text="Decrement"
                 Clicked="OnCounterDecrement"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Text="Decrement" />
 
         </VerticalStackLayout>
     </ScrollView>
