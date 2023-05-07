@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-android:
-    runs-on: windows-2022
+    runs-on: macos-2022
 
     steps:
       - name: Clone repository
@@ -40,10 +40,10 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore Quiz/Quiz.csproj
 
-      - name: Build app
+      - name: Build app binary
         run: dotnet build Quiz/Quiz.csproj --configuration Release --framework net7.0-android --no-restore
 
-      - name: Upload Android Artifact
+      - name: Upload app binary
         uses: actions/upload-artifact@v3
         with:
           name: quiz.apk
