@@ -22,21 +22,26 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
 
-                    <VerticalStackLayout>
-                        <Label Text="{Binding}" />
+                    <Border>
+                        <!--<Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectAnswer}" CommandParameter="{Binding .}" />
+
+                        </Border.GestureRecognizers>-->
+
+                        <Button Text="{Binding}" />
 
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
+                            <VisualStateGroup Name="FocusState">
                                 <VisualState Name="Normal" />
-                                <VisualState Name="Selected">
+                                <VisualState Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="LightSkyBlue" />
+                                        <Setter Property="BackgroundColor" Value="Red" />
                                     </VisualState.Setters>
                                 </VisualState>
 
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                    </VerticalStackLayout>
+                    </Border>
 
 
                 </DataTemplate>

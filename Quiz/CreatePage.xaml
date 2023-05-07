@@ -28,7 +28,7 @@
                 VerticalOptions="Center">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStates">
+                        <VisualStateGroup Name="CommonStatesZ">
                             <VisualState Name="On">
                                 <VisualState.Setters>
                                     <Setter Property="ThumbColor" Value="Green" />

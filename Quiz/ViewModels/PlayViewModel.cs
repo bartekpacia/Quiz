@@ -34,9 +34,7 @@ public partial class PlayViewModel : ObservableObject
     [RelayCommand]
     void SelectAnswer(string answer)
     {
-        if (answer == goodAnswer) {
-
-        }
+        if (answer == goodAnswer) { }
         else { }
     }
 }
