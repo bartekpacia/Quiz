@@ -14,9 +14,14 @@
             Text="Which city is the capital of Poland?"
             VerticalOptions="Center" />
 
-        <CollectionView SelectionMode="Single">
+        <CollectionView
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding Answers}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
+
                     <VerticalStackLayout>
                         <Label Text="{Binding}" />
 
@@ -32,57 +37,6 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>1</x:String>
-                    <x:String>2</x:String>
-                    <x:String>3</x:String>
-                    <x:String>4</x:String>
-                    <x:String>5</x:String>
-                </x:Array>
-            </CollectionView.ItemsSource>
-        </CollectionView>
-
-        <CollectionView
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding Answers}"
-            SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-
-                        <Frame BackgroundColor="Green">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectAnswer}" CommandParameter="{Binding .}" />
-
-                            </Frame.GestureRecognizers>
-
-                            <Label Text="{Binding .}" />
-                            <!--<Frame.Triggers>
-                                <Trigger TargetType="Frame" Property="IsFocused" Value="True">
-
-                                    <Setter Property="BackgroundColor" Value="Red" />
-
-                                </Trigger>
-
-
-                            </Frame.Triggers>-->
-
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup Name="CommonStates">
-                                    <VisualState Name="Normal" />
-                                    <VisualState Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="LightSkyBlue" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                        </Frame>
 
 
                 </DataTemplate>

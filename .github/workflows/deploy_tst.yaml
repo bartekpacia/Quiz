@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-android:
-    runs-on: macos-2022
+    runs-on: macos-latest
 
     steps:
       - name: Clone repository
