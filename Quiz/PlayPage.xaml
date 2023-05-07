@@ -23,17 +23,18 @@
                 <DataTemplate>
 
                     <Border>
+                        <!--  This gesture recognizer breaks Visual State Manager  -->
                         <!--<Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectAnswer}" CommandParameter="{Binding .}" />
 
                         </Border.GestureRecognizers>-->
 
-                        <Button Text="{Binding}" />
+                        <Label Text="{Binding .}" />
 
                         <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="FocusState">
+                            <VisualStateGroup Name="Some States">
                                 <VisualState Name="Normal" />
-                                <VisualState Name="Pressed">
+                                <VisualState Name="Selected">
                                     <VisualState.Setters>
                                         <Setter Property="BackgroundColor" Value="Red" />
                                     </VisualState.Setters>
