@@ -13,7 +13,7 @@
             VerticalOptions="Center">
 
             <Border
-                Padding="100"
+                Padding="80"
                 Background="#2B0B98"
                 HorizontalOptions="Center"
                 Stroke="#C49B33"
@@ -33,7 +33,7 @@
             </Border>
 
             <Border
-                Padding="100"
+                Padding="80"
                 Background="#2B0B98"
                 HorizontalOptions="Center"
                 Stroke="#C49B33"
