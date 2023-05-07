@@ -4,10 +4,49 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="CreatePage">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="CreatePage"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+
+    <HorizontalStackLayout
+        Grid.Row="2"
+        Grid.Column="0"
+        Margin="5"
+        BackgroundColor="White"
+        HeightRequest="50"
+        Spacing="7">
+
+        <VerticalStackLayout Margin="2">
+            <Label
+                x:Name="LblAutoMan"
+                HeightRequest="20"
+                HorizontalOptions="Center"
+                Text="Automatic"
+                VerticalOptions="Start"
+                WidthRequest="65" />
+            <Switch
+                HeightRequest="10"
+                HorizontalOptions="Start"
+                IsToggled="True"
+                VerticalOptions="Center">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="Green" />
+                                    <Setter TargetName="LblAutoMan" Property="Label.Text" Value="Automatic" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor" Value="Red" />
+                                    <Setter TargetName="LblAutoMan" Property="Label.Text" Value="Manual" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Switch>
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+
 </ContentPage>
