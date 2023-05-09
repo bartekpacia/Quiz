@@ -1,20 +1,16 @@
 ﻿using System;
-using SQLite;
-using SQLiteNetExtensions.Attributes;
+using Microsoft.EntityFrameworkCore;
 
 namespace Quiz.Models
 {
-    [Table("Questions")]
-    public class QuestionEntity
+    [PrimaryKey("Id")]
+    public class Question
     {
-        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Content { get; set; }
         public int CorrectAnswerId { get; set; }
-    }
-
-    public class Question : QuestionEntity
-    {
+        public int QuizId { get; set; }
+        public QuizModel Quiz { get; set; }
         public List<Answer> Answers { get; set; }
     }
 }

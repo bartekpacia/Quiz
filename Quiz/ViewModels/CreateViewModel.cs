@@ -3,32 +3,38 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Quiz.Models;
 
 namespace Quiz.ViewModels;
 
-// TODO: Move the model classes elsewhere
-
-public class QuizModel
-{
-    public List<QuestionModel> questions;
-}
-
-public class QuestionModel
-{
-    public List<String> answers;
-    public int validAnswerIndex;
-}
-
 public partial class CreateViewModel : ObservableObject
 {
-    public CreateViewModel()
-    {
-        Quizes = new ObservableCollection<QuizModel>();
+    [ObservableProperty]
+    public QuizModel quiz = new QuizModel();
 
-        var quizModel = new QuizModel();
-        Quizes.Add(quizModel);
-    }
 
     [ObservableProperty]
-    ObservableCollection<QuizModel> quizes;
+    public ObservableCollection<Question> questions = new ObservableCollection<Question>();
+
+    public CreateViewModel()
+    {
+        App.DbService.Add(new QuizModel { Title = "Test" });
+        App.DbService.SaveChanges();
+
+        Quiz = App.DbService.Quizzes.First();
+    }
+
+    [RelayCommand]
+    public void AddQuestion()
+    {
+        Questions.Add(new Question { Content = "Hello" });
+        Quiz.Questions = Questions.ToList<Question>();
+
+    }
+
+    [RelayCommand]
+    public void SaveQuiz()
+    {
+        App.DbService.Add(Quiz);
+    }
 }

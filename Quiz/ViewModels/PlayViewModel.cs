@@ -13,6 +13,8 @@ public partial class PlayViewModel : ObservableObject
 
     // Current question
 
+
+
     const string goodAnswer = "Warsaw";
 
     public PlayViewModel()

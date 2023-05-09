@@ -3,50 +3,40 @@
     x:Class="Quiz.CreatePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="CreatePage">
+    xmlns:model="clr-namespace:Quiz.Models"
+    Title="CreatePage"
+    WidthRequest="600"
+    >
+        <VerticalStackLayout Padding="30" Spacing="20" WidthRequest="600" >
+        <Label FontSize="25" Text="Strona Do tworzenia quizu" HorizontalTextAlignment="Center" Margin="0,0,0,20"></Label>
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Podaj tytuł Quizu" FontSize="16"/>
+                <Entry Text="{Binding Quiz.Title}"/>
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="20" >
+                <Button Command="{Binding AddQuestionCommand}" Text="+ Dodaj Pytanie" WidthRequest="200"/>
+            </HorizontalStackLayout>
+                
+            </VerticalStackLayout>
+             <ScrollView HeightRequest="600" >
+              <VerticalStackLayout Spacing="20">
+                <CollectionView ItemsSource="{Binding Questions}">
+                     <CollectionView.ItemTemplate>
+                         <DataTemplate x:DataType="model:Question" >
+                            <VerticalStackLayout Spacing="10" Margin="10">
+                                   <Label Text="Pytanie"/>
+                                   <Entry Text="{Binding Content}"/>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-    <HorizontalStackLayout
-        Grid.Row="2"
-        Grid.Column="0"
-        Margin="5"
-        BackgroundColor="White"
-        HeightRequest="50"
-        Spacing="7">
+            </VerticalStackLayout>
 
-        <VerticalStackLayout Margin="2">
-            <Label
-                x:Name="LblAutoMan"
-                HeightRequest="20"
-                HorizontalOptions="Center"
-                Text="Automatic"
-                VerticalOptions="Start"
-                WidthRequest="65" />
-            <Switch
-                HeightRequest="10"
-                HorizontalOptions="Start"
-                IsToggled="True"
-                VerticalOptions="Center">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStatesZ">
-                            <VisualState Name="On">
-                                <VisualState.Setters>
-                                    <Setter Property="ThumbColor" Value="Green" />
-                                    <Setter TargetName="LblAutoMan" Property="Label.Text" Value="Automatic" />
-                                </VisualState.Setters>
-                            </VisualState>
+          
 
-                            <VisualState Name="Off">
-                                <VisualState.Setters>
-                                    <Setter Property="ThumbColor" Value="Red" />
-                                    <Setter TargetName="LblAutoMan" Property="Label.Text" Value="Manual" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </VisualStateManager.VisualStateGroups>
-            </Switch>
+                
+                   
+            </ScrollView>
+            <Button Command="{Binding SaveQuizCommand}" Text="Zapisz zmiany i dodaj Quiz"/>
         </VerticalStackLayout>
-    </HorizontalStackLayout>
-
 </ContentPage>

@@ -2,11 +2,13 @@
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Quiz.Models;
 
 namespace Quiz.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
+
     [ObservableProperty]
     string text;
 
