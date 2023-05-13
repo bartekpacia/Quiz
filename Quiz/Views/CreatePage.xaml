@@ -5,26 +5,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:Quiz.Models"
     Title="CreatePage"
-    WidthRequest="600"
-    >
-        <VerticalStackLayout Padding="30" Spacing="20" WidthRequest="600" >
-        <Label FontSize="25" Text="Strona Do tworzenia quizu" HorizontalTextAlignment="Center" Margin="0,0,0,20"></Label>
-            <VerticalStackLayout Spacing="10">
-                <Label Text="Podaj tytuł Quizu" FontSize="16"/>
-                <Entry Text="{Binding Quiz.Title}"/>
-            <HorizontalStackLayout HorizontalOptions="Center" Margin="20" >
-                <Button Command="{Binding AddQuestionCommand}" Text="+ Dodaj Pytanie" WidthRequest="200"/>
+    WidthRequest="600">
+    <VerticalStackLayout
+        Padding="30"
+        Spacing="20"
+        WidthRequest="600">
+        <Label
+            Margin="0,0,0,20"
+            FontSize="25"
+            HorizontalTextAlignment="Center"
+            Text="Strona Do tworzenia quizu" />
+        <VerticalStackLayout Spacing="10">
+            <Label FontSize="16" Text="Podaj tytuł Quizu" />
+            <Entry Text="{Binding Quiz.Title}" />
+            <HorizontalStackLayout Margin="20" HorizontalOptions="Center">
+                <Button
+                    Command="{Binding AddQuestionCommand}"
+                    Text="+ Dodaj Pytanie"
+                    WidthRequest="200" />
             </HorizontalStackLayout>
-                
-            </VerticalStackLayout>
-             <ScrollView HeightRequest="600" >
-              <VerticalStackLayout Spacing="20">
+
+        </VerticalStackLayout>
+        <ScrollView HeightRequest="600">
+            <VerticalStackLayout Spacing="20">
                 <CollectionView ItemsSource="{Binding Questions}">
-                     <CollectionView.ItemTemplate>
-                         <DataTemplate x:DataType="model:Question" >
-                            <VerticalStackLayout Spacing="10" Margin="10">
-                                   <Label Text="Pytanie"/>
-                                   <Entry Text="{Binding Content}"/>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Question">
+                            <VerticalStackLayout Margin="10" Spacing="10">
+                                <Label Text="Pytanie" />
+                                <Entry Text="{Binding Content}" />
                             </VerticalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -32,11 +41,11 @@
 
             </VerticalStackLayout>
 
-          
 
-                
-                   
-            </ScrollView>
-            <Button Command="{Binding SaveQuizCommand}" Text="Zapisz zmiany i dodaj Quiz"/>
-        </VerticalStackLayout>
+
+
+
+        </ScrollView>
+        <Button Command="{Binding SaveQuizCommand}" Text="Zapisz zmiany i dodaj Quiz" />
+    </VerticalStackLayout>
 </ContentPage>
