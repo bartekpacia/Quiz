@@ -8,7 +8,6 @@ namespace Quiz.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-
     [ObservableProperty]
     string text;
 

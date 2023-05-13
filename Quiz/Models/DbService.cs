@@ -8,8 +8,6 @@ using System.Collections.Generic;
 
 namespace Quiz.Models
 {
-
-
     public class DbService : DbContext
     {
         public DbSet<Answer> Answers { get; set; }
@@ -29,11 +27,8 @@ namespace Quiz.Models
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={DbPath}");
 
-
-
+        protected override void OnConfiguring(DbContextOptionsBuilder options) =>
+            options.UseSqlite($"Data Source={DbPath}");
     }
-
 }

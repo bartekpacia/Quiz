@@ -10,4 +10,3 @@ namespace Quiz.Models
         public List<Question> Questions;
     }
 }
-

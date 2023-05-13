@@ -2,7 +2,6 @@
 using Quiz.ViewModels;
 using Quiz.Models;
 
-
 namespace Quiz;
 
 public static class MauiProgram
@@ -29,8 +28,9 @@ public static class MauiProgram
         builder.Services.AddTransient<CreatePage>();
         builder.Services.AddTransient<CreateViewModel>();
 
-
-        builder.Services.AddSingleton<DbService>(s => ActivatorUtilities.CreateInstance<DbService>(s, dbPath));
+        builder.Services.AddSingleton<DbService>(
+            s => ActivatorUtilities.CreateInstance<DbService>(s, dbPath)
+        );
         //builder.Services.AddSingleton<Store>(s => ActivatorUtilities.CreateInstance<Store>(s));
 
 

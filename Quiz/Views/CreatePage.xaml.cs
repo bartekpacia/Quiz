@@ -1,7 +1,7 @@
 ﻿using Quiz.Models;
 using Quiz.ViewModels;
-namespace Quiz;
 
+namespace Quiz;
 
 public partial class CreatePage : ContentPage
 {

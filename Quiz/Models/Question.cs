@@ -14,4 +14,3 @@ namespace Quiz.Models
         public List<Answer> Answers { get; set; }
     }
 }
-

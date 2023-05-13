@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Quiz.Models
 {
     public class Store
@@ -6,4 +7,3 @@ namespace Quiz.Models
         public int currentQuizId = 1;
     }
 }
-

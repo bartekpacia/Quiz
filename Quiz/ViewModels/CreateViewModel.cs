@@ -12,7 +12,6 @@ public partial class CreateViewModel : ObservableObject
     [ObservableProperty]
     public QuizModel quiz = new QuizModel();
 
-
     [ObservableProperty]
     public ObservableCollection<Question> questions = new ObservableCollection<Question>();
 
@@ -29,7 +28,6 @@ public partial class CreateViewModel : ObservableObject
     {
         Questions.Add(new Question { Content = "Hello" });
         Quiz.Questions = Questions.ToList<Question>();
-
     }
 
     [RelayCommand]
