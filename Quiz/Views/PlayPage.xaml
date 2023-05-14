@@ -3,6 +3,7 @@
     x:Class="Quiz.PlayPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Quiz.Models"
     xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
     Title="PlayPage"
     x:DataType="viewmodel:PlayViewModel">
@@ -11,27 +12,36 @@
 
         <Label
             HorizontalOptions="Center"
-            Text="Which city is the capital of Poland?"
+            Text="{Binding CurrentQuestion.Content}"
             VerticalOptions="Center" />
 
         <CollectionView
             Grid.Row="2"
             Grid.ColumnSpan="2"
-            ItemsSource="{Binding Answers}"
+            ItemsSource="{Binding CurrentAnswers}"
             SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="16" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="model:Answer">
 
                     <Border>
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="16" />
+                        </Border.StrokeShape>
+
                         <!--  This gesture recognizer breaks Visual State Manager  -->
                         <!--<Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectAnswer}" CommandParameter="{Binding .}" />
 
                         </Border.GestureRecognizers>-->
 
-                        <Label Text="{Binding .}" />
+                        <Label Padding="16" Text="{Binding Content}" />
 
-                        <VisualStateManager.VisualStateGroups>
+                        <!--<VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="Some States">
                                 <VisualState Name="Normal" />
                                 <VisualState Name="Selected">
@@ -41,7 +51,7 @@
                                 </VisualState>
 
                             </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                        </VisualStateManager.VisualStateGroups>-->
                     </Border>
 
 
