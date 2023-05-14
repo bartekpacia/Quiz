@@ -8,36 +8,63 @@
     x:DataType="viewmodel:MainViewModel">
 
     <ScrollView>
-        <VerticalStackLayout Padding="64" Spacing="64">
-            <Button
-                Command="{Binding CreateCommand}"
-                CommandParameter="{x:Int32}"
-                Text="Create new Quiz" />
-            <VerticalStackLayout Spacing="20">
-                <CollectionView ItemsSource="{Binding Quizzes}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:QuizModel">
-                            <HorizontalStackLayout
-                                Margin="10"
-                                HorizontalOptions="Center"
-                                Spacing="10">
-                                <Button Text="{Binding Title}" />
+        <VerticalStackLayout Padding="64">
+
+            <Grid Padding="16" ColumnDefinitions="*,200">
+
+                <Label FontSize="Large" Text="Quiz list" />
+
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding CreateCommand}"
+                    CommandParameter="{x:Int32}"
+                    Text="Create new quiz" />
+
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Quizzes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:QuizModel">
+
+
+                        <Border>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="16" />
+                            </Border.StrokeShape>
+
+                            <Grid
+                                Padding="16"
+                                ColumnDefinitions="*,100,100"
+                                ColumnSpacing="16">
+
+                                <Label
+                                    FontSize="Large"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding Title}"
+                                    VerticalOptions="Center" />
+
+
                                 <Button
+                                    Grid.Column="1"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=PlayCommand}"
                                     CommandParameter="{Binding Id}"
-                                    Text="Play"
-                                    WidthRequest="100" />
+                                    Text="Play" />
+
                                 <Button
+                                    Grid.Column="3"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=CreateCommand}"
                                     CommandParameter="{Binding Id}"
-                                    Text="Edit"
-                                    WidthRequest="100" />
-                            </HorizontalStackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                    Text="Edit" />
 
-            </VerticalStackLayout>
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
         </VerticalStackLayout>
     </ScrollView>
 
