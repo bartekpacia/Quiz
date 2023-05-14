@@ -10,12 +10,20 @@
     <ScrollView>
         <VerticalStackLayout Padding="64">
 
-            <Grid Padding="16" ColumnDefinitions="*,200">
+            <Grid
+                Padding="16"
+                ColumnDefinitions="*,200,200"
+                ColumnSpacing="16">
 
                 <Label FontSize="Large" Text="Quiz list" />
 
                 <Button
                     Grid.Column="1"
+                    Command="{Binding RefreshCommand}"
+                    Text="Refresh" />
+
+                <Button
+                    Grid.Column="2"
                     Command="{Binding CreateCommand}"
                     CommandParameter="{x:Int32}"
                     Text="Create new quiz" />

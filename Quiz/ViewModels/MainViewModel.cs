@@ -15,15 +15,10 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     string text;
 
-    void Refresh()
+    public MainViewModel()
     {
         var data = App.Db.Quizzes.ToList();
         Quizzes = new ObservableCollection<QuizModel>(data);
-    }
-
-    public MainViewModel()
-    {
-        Refresh();
     }
 
     [RelayCommand]
@@ -38,5 +33,12 @@ public partial class MainViewModel : ObservableObject
     {
         App.Store.currentQuizId = id;
         await Shell.Current.GoToAsync(nameof(CreatePage));
+    }
+
+    [RelayCommand]
+    void Refresh()
+    {
+        var data = App.Db.Quizzes.ToList();
+        Quizzes = new ObservableCollection<QuizModel>(data);
     }
 }
