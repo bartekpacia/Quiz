@@ -48,13 +48,13 @@ public partial class CreateViewModel : ObservableObject
 
         for (int i = 0; i < 4; i++)
         {
-            emptyAnswers.Add(new Answer() { Content = "Nowe pytanie", Index = i });
+            emptyAnswers.Add(new Answer() { Content = $"Answer {i}", Index = i });
         }
 
         Questions.Add(
             new Question
             {
-                Content = "Hello",
+                Content = "New question",
                 Answers = emptyAnswers,
                 Index = questionCurrentIndex
             }
