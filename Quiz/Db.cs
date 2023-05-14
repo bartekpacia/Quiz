@@ -61,7 +61,7 @@ public class Db : DbContext
 
     private QuizModel createQuiz2()
     {
-        var answers = new List<Answer>
+        var answers1 = new List<Answer>
         {
             new Answer { Content = "tak" },
             new Answer { Content = "nie", IsCorrect = true },
@@ -69,9 +69,18 @@ public class Db : DbContext
             new Answer { Content = "okrutnik", IsCorrect = true }
         };
 
+        var answers2 = new List<Answer>
+        {
+            new Answer { Content = "mało" },
+            new Answer { Content = "dużo", IsCorrect = true },
+            new Answer { Content = "10 ton", IsCorrect = true },
+            new Answer { Content = "5 kg" }
+        };
+
         var questions = new List<Question>
         {
-            new Question { Content = "Czy wiedział?", Answers = answers }
+            new Question { Content = "Czy wiedział?", Answers = answers1 },
+            new Question { Content = "Ile ton kremówek spożył?", Answers = answers2 }
         };
 
         var quiz = new QuizModel

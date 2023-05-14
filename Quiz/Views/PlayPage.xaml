@@ -15,49 +15,39 @@
             Text="{Binding CurrentQuestion.Content}"
             VerticalOptions="Center" />
 
-        <CollectionView
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding CurrentAnswers}"
-            SelectionMode="Single">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="16" Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Questions}">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Answer">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="model:Question">
 
-                    <Border>
+                    <VerticalStackLayout>
 
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="16" />
-                        </Border.StrokeShape>
+                        <Label
+                            Padding="16"
+                            FontSize="Medium"
+                            Text="{Binding Content}" />
 
-                        <!--  This gesture recognizer breaks Visual State Manager  -->
-                        <!--<Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectAnswer}" CommandParameter="{Binding .}" />
+                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Answers}">
 
-                        </Border.GestureRecognizers>-->
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="model:Answer">
+                                    <Border>
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="16" />
+                                        </Border.StrokeShape>
+                                        <Label Padding="16" Text="{Binding Content}" />
+                                    </Border>
+                                </DataTemplate>
 
-                        <Label Padding="16" Text="{Binding Content}" />
+                            </BindableLayout.ItemTemplate>
 
-                        <!--<VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="Some States">
-                                <VisualState Name="Normal" />
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="Red" />
-                                    </VisualState.Setters>
-                                </VisualState>
+                        </VerticalStackLayout>
 
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>-->
-                    </Border>
-
+                    </VerticalStackLayout>
 
                 </DataTemplate>
 
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
