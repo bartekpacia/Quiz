@@ -28,11 +28,16 @@ public static class MauiProgram
         builder.Services.AddTransient<CreatePage>();
         builder.Services.AddTransient<CreateViewModel>();
 
+<<<<<<< Updated upstream
         builder.Services.AddSingleton<DbService>(
             s => ActivatorUtilities.CreateInstance<DbService>(s, dbPath)
         );
         //builder.Services.AddSingleton<Store>(s => ActivatorUtilities.CreateInstance<Store>(s));
 
+=======
+        builder.Services.AddSingleton<Db>(s => ActivatorUtilities.CreateInstance<Db>(s, dbPath));
+        builder.Services.AddSingleton<Store>(s => ActivatorUtilities.CreateInstance<Store>(s));
+>>>>>>> Stashed changes
 
 #if DEBUG
         builder.Logging.AddDebug();

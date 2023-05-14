@@ -1,9 +1,14 @@
 ﻿using System;
+using Quiz.Models;
 
-namespace Quiz.Models
+// global State
 
 public class Store
 {
-    public int currentQuizId = 1;
-}
+    public Store() { }
 
+    public List<QuizModel> Quizzes;
+    public int currentQuizId = 1;
+
+    public void RefetchQuzizes() { }
+}

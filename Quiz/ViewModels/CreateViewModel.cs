@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Quiz.Models;
@@ -9,6 +10,16 @@ namespace Quiz.ViewModels;
 
 public partial class CreateViewModel : ObservableObject
 {
+    int questionCurrentIndex = 0;
+
+    void setQuestions()
+    {
+        if (Quiz.Questions != null)
+        {
+            Questions = new ObservableCollection<Question>(Quiz.Questions);
+        }
+    }
+
     [ObservableProperty]
     public QuizModel quiz = new QuizModel();
 
@@ -17,22 +28,63 @@ public partial class CreateViewModel : ObservableObject
 
     public CreateViewModel()
     {
-        App.DbService.Add(new QuizModel { Title = "Test" });
-        App.DbService.SaveChanges();
+        Quiz = App.Db.Quizzes.Find(App.Store.currentQuizId) ?? new QuizModel();
 
-        Quiz = App.DbService.Quizzes.First();
+        setQuestions();
     }
 
     [RelayCommand]
-    public void AddQuestion()
+    void Handletoggle(int questionIndex)
     {
-        Questions.Add(new Question { Content = "Hello" });
+        Console.Write("dsdsd");
+    }
+
+    [RelayCommand]
+    void AddQuestion()
+    {
+        questionCurrentIndex++;
+
+        var emptyAnswers = new List<Answer>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            emptyAnswers.Add(new Answer() { Content = "Nowe pytanie", Index = i });
+        }
+
+        Questions.Add(
+            new Question
+            {
+                Content = "Hello",
+                Answers = emptyAnswers,
+                Index = questionCurrentIndex
+            }
+        );
         Quiz.Questions = Questions.ToList<Question>();
     }
 
     [RelayCommand]
-    public void SaveQuiz()
+    void RemoveQuestion(int index)
     {
-        App.DbService.Add(Quiz);
+        var itemToRemove = Questions.Single(item => item.Index == index);
+        Questions.Remove(itemToRemove);
+
+        Quiz.Questions = Questions.ToList<Question>();
+    }
+
+    [RelayCommand]
+    async void SaveQuiz()
+    {
+        if (Quiz.Id != 0)
+        {
+            App.Db.Update(Quiz);
+        }
+        else
+        {
+            App.Db.Add(Quiz);
+        }
+
+        App.Db.SaveChanges();
+
+        await Shell.Current.GoToAsync(nameof(MainPage));
     }
 }
