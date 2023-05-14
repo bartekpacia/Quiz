@@ -15,9 +15,12 @@
             Text="{Binding CurrentQuestion.Content}"
             VerticalOptions="Center" />
 
-        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Questions}">
+        <CollectionView ItemsSource="{Binding Questions}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="16" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
 
-            <BindableLayout.ItemTemplate>
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Question">
 
                     <VerticalStackLayout>
@@ -47,7 +50,7 @@
 
                 </DataTemplate>
 
-            </BindableLayout.ItemTemplate>
-        </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
