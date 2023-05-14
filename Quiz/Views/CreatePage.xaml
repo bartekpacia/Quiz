@@ -4,27 +4,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:Quiz.Models"
-<<<<<<< Updated upstream
+    xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
     Title="CreatePage"
     WidthRequest="600">
-=======
-    xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
-    Title="CreatePage">
-
-
->>>>>>> Stashed changes
-    <VerticalStackLayout
-        Padding="30"
-        Spacing="20"
-        WidthRequest="600">
-<<<<<<< Updated upstream
+    <VerticalStackLayout WidthRequest="600">
         <Label
             Margin="0,0,0,20"
             FontSize="25"
             HorizontalTextAlignment="Center"
             Text="Strona Do tworzenia quizu" />
         <VerticalStackLayout Spacing="10">
-            <Label FontSize="16" Text="Podaj tytuł Quizu" />
+            <Label
+                FontSize="16"
+                Text="Podaj tytuł Quizu"
+                TextColor="LightGray" />
             <Entry Text="{Binding Quiz.Title}" />
             <HorizontalStackLayout Margin="20" HorizontalOptions="Center">
                 <Button
@@ -34,51 +27,8 @@
             </HorizontalStackLayout>
 
         </VerticalStackLayout>
-        <ScrollView HeightRequest="600">
-            <VerticalStackLayout Spacing="20">
-                <CollectionView ItemsSource="{Binding Questions}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Question">
-                            <VerticalStackLayout Margin="10" Spacing="10">
-                                <Label Text="Pytanie" />
-                                <Entry Text="{Binding Content}" />
-                            </VerticalStackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-            </VerticalStackLayout>
-
-
-
-
-
-        </ScrollView>
         <Button Command="{Binding SaveQuizCommand}" Text="Zapisz zmiany i dodaj Quiz" />
-    </VerticalStackLayout>
-=======
-        <VerticalStackLayout WidthRequest="600">
-            <Label
-                Margin="0,0,0,20"
-                FontSize="25"
-                HorizontalTextAlignment="Center"
-                Text="Strona Do tworzenia quizu" />
-            <VerticalStackLayout Spacing="10">
-                <Label
-                    FontSize="16"
-                    Text="Podaj tytuł Quizu"
-                    TextColor="LightGray" />
-                <Entry Text="{Binding Quiz.Title}" />
-                <HorizontalStackLayout Margin="20" HorizontalOptions="Center">
-                    <Button
-                        Command="{Binding AddQuestionCommand}"
-                        Text="+ Dodaj Pytanie"
-                        WidthRequest="200" />
-                </HorizontalStackLayout>
 
-            </VerticalStackLayout>
-            <Button Command="{Binding SaveQuizCommand}" Text="Zapisz zmiany i dodaj Quiz" />
-        </VerticalStackLayout>
 
         <Label
             FontSize="16"
@@ -128,8 +78,4 @@
 
 
     </VerticalStackLayout>
-
-
-
->>>>>>> Stashed changes
 </ContentPage>

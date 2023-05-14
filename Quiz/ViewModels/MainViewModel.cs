@@ -9,12 +9,9 @@ namespace Quiz.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-<<<<<<< Updated upstream
-=======
     [ObservableProperty]
     ObservableCollection<QuizModel> quizzes;
 
->>>>>>> Stashed changes
     [ObservableProperty]
     string text;
 
