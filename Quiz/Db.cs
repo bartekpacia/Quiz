@@ -19,32 +19,54 @@ public class Db : DbContext
     public Db(string dbPath)
     {
         DbPath = dbPath;
-        Init();
+        Seed();
     }
 
-    public void Init()
+    public void Seed()
     {
-        var ans = new List<Answer>
-        {
-            new Answer { Content = "nie", IsCorrect = true },
-            new Answer { Content = "nie" },
-            new Answer { Content = "nie" },
-            new Answer { Content = "nie" }
-        };
-        var ques = new List<Question>
-        {
-            new Question { Content = "TEstowe pytanie", Answers = ans }
-        };
-        var quiz = new QuizModel
-        {
-            Title = "Czy maui i wpf powinny jeszcze istnieć?",
-            Questions = ques
-        };
-
         this.Database.EnsureDeleted();
         this.Database.EnsureCreated();
 
-        this.Add(quiz);
+        var quiz1 = new QuizModel
+        {
+            Title = "Czy maui i wpf powinny jeszcze istnieć?",
+            Questions =
+            {
+                new Question
+                {
+                    Content = "Testowe pytanie",
+                    Answers =
+                    {
+                        new Answer { Content = "nie", IsCorrect = true },
+                        new Answer { Content = "nie" },
+                        new Answer { Content = "nie" },
+                        new Answer { Content = "nie" }
+                    }
+                }
+            }
+        };
+
+        var quiz2 = new QuizModel
+        {
+            Title = "Życie i posługa św. Jana Pawła II",
+            Questions =
+            {
+                new Question
+                {
+                    Content = "Czy wiedział?",
+                    Answers =
+                    {
+                        new Answer { Content = "tak" },
+                        new Answer { Content = "nie", IsCorrect = true },
+                        new Answer { Content = "jeszcze jak", IsCorrect = true },
+                        new Answer { Content = "okrutnik", IsCorrect = true }
+                    }
+                }
+            }
+        };
+
+        this.Add(quiz1);
+        this.Add(quiz2);
         this.SaveChanges();
     }
 
