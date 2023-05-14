@@ -31,9 +31,12 @@
             </Grid>
 
             <CollectionView ItemsSource="{Binding Quizzes}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="16" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:QuizModel">
-
 
                         <Border>
                             <Border.StrokeShape>
@@ -50,7 +53,6 @@
                                     LineBreakMode="WordWrap"
                                     Text="{Binding Title}"
                                     VerticalOptions="Center" />
-
 
                                 <Button
                                     Grid.Column="1"
