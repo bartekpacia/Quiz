@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Quiz.CreatePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Quiz.Models"
+    xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
+    Title="CreatePage"
+    WidthRequest="600">
+    <VerticalStackLayout WidthRequest="600">
+        <Label
+            Margin="0,0,0,20"
+            FontSize="25"
+            HorizontalTextAlignment="Center"
+            Text="Strona Do tworzenia quizu" />
+        <VerticalStackLayout Spacing="10">
+            <Label
+                FontSize="16"
+                Text="Podaj tytuł Quizu"
+                TextColor="LightGray" />
+            <Entry Text="{Binding Quiz.Title}" />
+            <HorizontalStackLayout Margin="20" HorizontalOptions="Center">
+                <Button
+                    Command="{Binding AddQuestionCommand}"
+                    Text="+ Dodaj Pytanie"
+                    WidthRequest="200" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+        <Button Command="{Binding SaveQuizCommand}" Text="Zapisz zmiany i dodaj Quiz" />
+
+
+        <Label
+            FontSize="16"
+            Text="Lista pytań w quzie"
+            TextColor="LightGray" />
+
+
+        <CollectionView ItemsSource="{Binding Questions}" MaximumHeightRequest="700">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="model:Question">
+                    <VerticalStackLayout Margin="0,20,0,0" MaximumWidthRequest="600">
+                        <Border Margin="0,0,0,10" StrokeThickness="3" />
+                        <FlexLayout HorizontalOptions="Fill" JustifyContent="SpaceBetween">
+                            <Entry
+                                Margin="0,0,10,0"
+                                FlexLayout.Grow="1"
+                                Text="{Binding Content}" />
+                            <Button
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CreateViewModel}}, Path=RemoveQuestionCommand}"
+                                CommandParameter="{Binding Index}"
+                                Text="Usuń"
+                                WidthRequest="100" />
+                        </FlexLayout>
+
+                        <CollectionView Margin="20,10,0,0" ItemsSource="{Binding Answers}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Answer">
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Padding="4" Text="Odpowiedź" />
+                                        <Entry Text="{Binding Content}" WidthRequest="300" />
+                                        <Switch IsToggled="{Binding IsCorrect}" />
+                                    </HorizontalStackLayout>
+
+                                </DataTemplate>
+
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Quiz.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Quiz.Models"
+    xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
+    x:DataType="viewmodel:MainViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="64" Spacing="64">
+            <Button
+                Command="{Binding CreateCommand}"
+                CommandParameter="{x:Int32}"
+                Text="Create new Quiz" />
+            <VerticalStackLayout Spacing="20">
+                <CollectionView ItemsSource="{Binding Quizzes}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:QuizModel">
+                            <HorizontalStackLayout
+                                Margin="10"
+                                HorizontalOptions="Center"
+                                Spacing="10">
+                                <Button Text="{Binding Title}" />
+                                <Button
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=PlayCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    Text="Play"
+                                    WidthRequest="100" />
+                                <Button
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=CreateCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    Text="Edit"
+                                    WidthRequest="100" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

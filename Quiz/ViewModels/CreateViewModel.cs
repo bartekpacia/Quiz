@@ -1,34 +1,90 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Quiz.Models;
 
 namespace Quiz.ViewModels;
 
-// TODO: Move the model classes elsewhere
-
-public class QuizModel
-{
-    public List<QuestionModel> questions;
-}
-
-public class QuestionModel
-{
-    public List<String> answers;
-    public int validAnswerIndex;
-}
-
 public partial class CreateViewModel : ObservableObject
 {
-    public CreateViewModel()
-    {
-        Quizes = new ObservableCollection<QuizModel>();
+    int questionCurrentIndex = 0;
 
-        var quizModel = new QuizModel();
-        Quizes.Add(quizModel);
+    void setQuestions()
+    {
+        if (Quiz.Questions != null)
+        {
+            Questions = new ObservableCollection<Question>(Quiz.Questions);
+        }
     }
 
     [ObservableProperty]
-    ObservableCollection<QuizModel> quizes;
+    public QuizModel quiz = new QuizModel();
+
+    [ObservableProperty]
+    public ObservableCollection<Question> questions = new ObservableCollection<Question>();
+
+    public CreateViewModel()
+    {
+        Quiz = App.Db.Quizzes.Find(App.Store.currentQuizId) ?? new QuizModel();
+
+        setQuestions();
+    }
+
+    [RelayCommand]
+    void Handletoggle(int questionIndex)
+    {
+        Console.Write("dsdsd");
+    }
+
+    [RelayCommand]
+    void AddQuestion()
+    {
+        questionCurrentIndex++;
+
+        var emptyAnswers = new List<Answer>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            emptyAnswers.Add(new Answer() { Content = "Nowe pytanie", Index = i });
+        }
+
+        Questions.Add(
+            new Question
+            {
+                Content = "Hello",
+                Answers = emptyAnswers,
+                Index = questionCurrentIndex
+            }
+        );
+        Quiz.Questions = Questions.ToList<Question>();
+    }
+
+    [RelayCommand]
+    void RemoveQuestion(int index)
+    {
+        var itemToRemove = Questions.Single(item => item.Index == index);
+        Questions.Remove(itemToRemove);
+
+        Quiz.Questions = Questions.ToList<Question>();
+    }
+
+    [RelayCommand]
+    async void SaveQuiz()
+    {
+        if (Quiz.Id != 0)
+        {
+            App.Db.Update(Quiz);
+        }
+        else
+        {
+            App.Db.Add(Quiz);
+        }
+
+        App.Db.SaveChanges();
+
+        await Shell.Current.GoToAsync(nameof(MainPage));
+    }
 }
