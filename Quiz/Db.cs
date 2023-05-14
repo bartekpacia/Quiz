@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
+namespace Quiz;
+
 public class Db : DbContext
 {
     public DbSet<Answer> Answers { get; set; }

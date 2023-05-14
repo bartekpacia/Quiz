@@ -6,7 +6,12 @@ namespace Quiz;
 
 public static class MauiProgram
 {
-    public static string dbPath = Path.Combine("./Contents/Resources", "database.db");
+    private static string persistentDbPath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+        "QuizDatabase.db"
+    );
+
+    private static string dbPath = persistentDbPath;
 
     public static MauiApp CreateMauiApp()
     {
