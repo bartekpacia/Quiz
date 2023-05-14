@@ -19,35 +19,67 @@ public class Db : DbContext
     public Db(string dbPath)
     {
         DbPath = dbPath;
-        Init();
+        Seed();
     }
 
-    public void Init()
+    protected override void OnConfiguring(DbContextOptionsBuilder options) =>
+        options.UseSqlite($"Data Source={DbPath}");
+
+    public void Seed()
     {
-        var ans = new List<Answer>
+        this.Database.EnsureDeleted();
+        this.Database.EnsureCreated();
+
+        this.Add(createQuiz1());
+        this.Add(createQuiz2());
+        this.SaveChanges();
+    }
+
+    private QuizModel createQuiz1()
+    {
+        var answers = new List<Answer>
         {
             new Answer { Content = "nie", IsCorrect = true },
             new Answer { Content = "nie" },
             new Answer { Content = "nie" },
             new Answer { Content = "nie" }
         };
-        var ques = new List<Question>
+
+        var questions = new List<Question>
         {
-            new Question { Content = "TEstowe pytanie", Answers = ans }
+            new Question { Content = "TEstowe pytanie", Answers = answers }
         };
+
         var quiz = new QuizModel
         {
             Title = "Czy maui i wpf powinny jeszcze istnieć?",
-            Questions = ques
+            Questions = questions
         };
 
-        this.Database.EnsureDeleted();
-        this.Database.EnsureCreated();
-
-        this.Add(quiz);
-        this.SaveChanges();
+        return quiz;
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options) =>
-        options.UseSqlite($"Data Source={DbPath}");
+    private QuizModel createQuiz2()
+    {
+        var answers = new List<Answer>
+        {
+            new Answer { Content = "tak" },
+            new Answer { Content = "nie", IsCorrect = true },
+            new Answer { Content = "jeszcze jak", IsCorrect = true },
+            new Answer { Content = "okrutnik", IsCorrect = true }
+        };
+
+        var questions = new List<Question>
+        {
+            new Question { Content = "Czy wiedział?", Answers = answers }
+        };
+
+        var quiz = new QuizModel
+        {
+            Title = "Życie i posługa św. Jana Pawła II",
+            Questions = questions,
+        };
+
+        return quiz;
+    }
 }
