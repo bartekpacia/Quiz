@@ -33,6 +33,9 @@ public static class MauiProgram
         builder.Services.AddTransient<CreatePage>();
         builder.Services.AddTransient<CreateViewModel>();
 
+        builder.Services.AddTransient<ResultPage>();
+        builder.Services.AddTransient<ResultViewModel>();
+
         builder.Services.AddSingleton<Db>(s => ActivatorUtilities.CreateInstance<Db>(s, dbPath));
         builder.Services.AddSingleton<Store>(s => ActivatorUtilities.CreateInstance<Store>(s));
 

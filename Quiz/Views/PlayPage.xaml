@@ -9,48 +9,40 @@
     x:DataType="viewmodel:PlayViewModel">
 
     <VerticalStackLayout Padding="32">
-
+        <Label Text="Remaining seconds: " />
+        <Label Text="{Binding RemainingSeconds}" />
         <Label
             HorizontalOptions="Center"
             Text="{Binding CurrentQuestion.Content}"
             VerticalOptions="Center" />
-
-        <CollectionView ItemsSource="{Binding Questions}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="16" Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-
+        <CollectionView ItemsSource="{Binding CurrentAnswers}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Question">
 
-                    <VerticalStackLayout>
+                <DataTemplate x:DataType="model:Answer">
+                    <Border x:Name="Border">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="16" />
+                        </Border.StrokeShape>
+                        <HorizontalStackLayout Padding="16">
+                            <Button
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectionChangedCommand}"
+                                CommandParameter="{Binding Id}"
+                                Text="Select" />
+                            <CheckBox IsChecked="{Binding IsSelected}" IsEnabled="False" />
+                            <Label Margin="16" Text="{Binding Content}" />
 
-                        <Label
-                            Padding="16"
-                            FontSize="Medium"
-                            Text="{Binding Content}" />
-
-                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Answers}">
-
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate x:DataType="model:Answer">
-                                    <Border>
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="16" />
-                                        </Border.StrokeShape>
-                                        <Label Padding="16" Text="{Binding Content}" />
-                                    </Border>
-                                </DataTemplate>
-
-                            </BindableLayout.ItemTemplate>
-
-                        </VerticalStackLayout>
-
-                    </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
 
                 </DataTemplate>
-
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button Command="{Binding GoToNextPageCommand}" Text="Go to next question" />
     </VerticalStackLayout>
+
+
+
+
+
+
 </ContentPage>

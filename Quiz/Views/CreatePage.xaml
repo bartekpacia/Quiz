@@ -12,6 +12,10 @@
 
         <VerticalStackLayout Spacing="16">
 
+            <Label
+                FontSize="16"
+                Text="{Binding ErrorMessage}"
+                TextColor="Red" />
             <Entry Placeholder="Quiz name" Text="{Binding Quiz.Title}" />
 
             <Button Command="{Binding SaveQuizCommand}" Text="Save changes and create quiz" />

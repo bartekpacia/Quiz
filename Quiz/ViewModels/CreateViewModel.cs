@@ -21,6 +21,9 @@ public partial class CreateViewModel : ObservableObject
     }
 
     [ObservableProperty]
+    public string errorMessage;
+
+    [ObservableProperty]
     public QuizModel quiz = new QuizModel();
 
     [ObservableProperty]
@@ -31,12 +34,6 @@ public partial class CreateViewModel : ObservableObject
         Quiz = App.Db.Quizzes.Find(App.Store.currentQuizId) ?? new QuizModel();
 
         setQuestions();
-    }
-
-    [RelayCommand]
-    void Handletoggle(int questionIndex)
-    {
-        Console.Write("dsdsd");
     }
 
     [RelayCommand]
@@ -74,6 +71,42 @@ public partial class CreateViewModel : ObservableObject
     [RelayCommand]
     async void SaveQuiz()
     {
+        foreach (var q in Quiz.Questions)
+        {
+            int i = 0;
+            int empty = 0;
+
+            foreach (var a in q.Answers)
+            {
+                if (a.IsCorrect)
+                {
+                    i++;
+                }
+                if (a.Content.Length == 0)
+                {
+                    empty++;
+                }
+            }
+
+            if (i > 0)
+            {
+                ErrorMessage = "Every question need at least one correct answer";
+                return;
+            }
+            if (empty > 0)
+            {
+                ErrorMessage = "Answer can not be empty";
+                return;
+            }
+        }
+
+        if (Quiz.Questions.Count == 0)
+        {
+            ErrorMessage = "You can't create empty quiz";
+
+            return;
+        }
+
         if (Quiz.Id != 0)
         {
             App.Db.Update(Quiz);
