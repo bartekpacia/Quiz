@@ -15,6 +15,7 @@
             HorizontalOptions="Center"
             Text="{Binding CurrentQuestion.Content}"
             VerticalOptions="Center" />
+        <Button Command="{Binding GoToNextPageCommand}" Text="Go to next question" />
         <CollectionView ItemsSource="{Binding CurrentAnswers}">
             <CollectionView.ItemTemplate>
 
@@ -37,7 +38,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Command="{Binding GoToNextPageCommand}" Text="Go to next question" />
     </VerticalStackLayout>
 
 

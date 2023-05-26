@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
-    Title="NewPage1"
+    Title="Results"
     x:DataType="viewmodel:ResultViewModel">
     <VerticalStackLayout>
         <Label

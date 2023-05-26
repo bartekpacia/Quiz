@@ -23,7 +23,6 @@ public partial class PlayViewModel : ObservableObject
     [RelayCommand]
     void SelectionChanged(int id)
     {
-        Console.WriteLine("Dsdsds");
         var found = CurrentAnswers.FirstOrDefault(answer => answer.Id == id);
         var i = CurrentAnswers.IndexOf(found);
 
@@ -44,7 +43,7 @@ public partial class PlayViewModel : ObservableObject
     }
 
     [RelayCommand]
-    void GoToNextPage()
+    async Task GoToNextPage()
     {
         var isCorrect = CheckCorrectnes();
         if (isCorrect)
@@ -59,7 +58,8 @@ public partial class PlayViewModel : ObservableObject
         }
         else
         {
-            GoToResult();
+            Console.WriteLine("Going to Results Page!");
+            await GoToResult();
         }
     }
 
@@ -84,17 +84,17 @@ public partial class PlayViewModel : ObservableObject
     IDispatcherTimer timer;
 
     [ObservableProperty]
-    public int remainingSeconds = 180;
+    public int remainingSeconds = 10;
 
     public void StartTimer()
     {
-        var timer = Application.Current.Dispatcher.CreateTimer();
+        timer = Application.Current.Dispatcher.CreateTimer();
         timer.Interval = TimeSpan.FromSeconds(1);
         timer.Tick += Timer_Tick;
         timer.Start();
     }
 
-    async private void GoToResult()
+    async private Task GoToResult()
     {
         App.Store.correctAnswers = CorrectAnswered.Count;
         App.Store.totalQuestions = Quiz.Questions.Count;
@@ -106,14 +106,17 @@ public partial class PlayViewModel : ObservableObject
 
     private void Timer_Tick(object sender, EventArgs e)
     {
-        MainThread.BeginInvokeOnMainThread(() =>
+        MainThread.BeginInvokeOnMainThread(async () =>
         {
             RemainingSeconds--;
+            Console.WriteLine($"Remaining seconds: {RemainingSeconds}");
 
             if (RemainingSeconds == 0)
             {
                 timer.Stop();
+                Console.WriteLine("Before going to result");
                 GoToResult();
+                Console.WriteLine("Went to result");
             }
         });
     }
