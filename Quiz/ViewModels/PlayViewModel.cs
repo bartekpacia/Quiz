@@ -17,6 +17,7 @@ public partial class PlayViewModel : ObservableObject
         Questions = new ObservableCollection<Question>(Quiz.Questions);
         CurrentQuestion = Questions[CurrentQuestionIndex];
         CurrentAnswers = new ObservableCollection<Answer>(CurrentQuestion.Answers);
+        StartTimer();
     }
 
     [RelayCommand]
@@ -80,12 +81,43 @@ public partial class PlayViewModel : ObservableObject
     [ObservableProperty]
     public ObservableCollection<Answer> currentAnswers;
 
+    IDispatcherTimer timer;
+
+    [ObservableProperty]
+    public int remainingSeconds = 10;
+
+    public void StartTimer()
+    {
+        timer = Application.Current.Dispatcher.CreateTimer();
+        timer.Interval = TimeSpan.FromSeconds(1);
+        timer.Tick += Timer_Tick;
+        timer.Start();
+    }
+
     async private Task GoToResult()
     {
         App.Store.correctAnswers = CorrectAnswered.Count;
         App.Store.totalQuestions = Quiz.Questions.Count;
+        App.Store.timeLeft = RemainingSeconds;
         App.Store.quizName = Quiz.Title;
 
         await Shell.Current.GoToAsync(nameof(ResultPage));
+    }
+
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+        MainThread.BeginInvokeOnMainThread(async () =>
+        {
+            RemainingSeconds--;
+            Console.WriteLine($"Remaining seconds: {RemainingSeconds}");
+
+            if (RemainingSeconds == 0)
+            {
+                timer.Stop();
+                Console.WriteLine("Before going to result");
+                GoToResult();
+                Console.WriteLine("Went to result");
+            }
+        });
     }
 }
