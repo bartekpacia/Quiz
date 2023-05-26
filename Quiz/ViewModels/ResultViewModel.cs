@@ -14,17 +14,5 @@ namespace Quiz.ViewModels
 
         [ObservableProperty]
         string message;
-
-        [RelayCommand]
-        public async Task GoToMainPage()
-        {
-            var mainViewModel =
-                Application.Current.MainPage.Handler.MauiContext.Services.GetService<MainViewModel>();
-
-            App.Current.MainPage = new NavigationPage(new MainPage(mainViewModel));
-
-            // FIXME: For unknown reason, the line below doesn't do anything
-            //await Shell.Current.GoToAsync(nameof(MainPage));
-        }
     }
 }

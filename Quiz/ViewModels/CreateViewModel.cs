@@ -88,7 +88,7 @@ public partial class CreateViewModel : ObservableObject
                 }
             }
 
-            if (i > 0)
+            if (i == 0)
             {
                 ErrorMessage = "Every question need at least one correct answer";
                 return;
@@ -118,6 +118,6 @@ public partial class CreateViewModel : ObservableObject
 
         App.Db.SaveChanges();
 
-        await Shell.Current.GoToAsync(nameof(MainPage));
+        await Shell.Current.GoToAsync("..");
     }
 }

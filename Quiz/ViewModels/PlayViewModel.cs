@@ -58,7 +58,6 @@ public partial class PlayViewModel : ObservableObject
         }
         else
         {
-            Console.WriteLine("Going to Results Page!");
             await GoToResult();
         }
     }
@@ -94,6 +93,7 @@ public partial class PlayViewModel : ObservableObject
         timer.Start();
     }
 
+    [RelayCommand]
     async private Task GoToResult()
     {
         App.Store.correctAnswers = CorrectAnswered.Count;
@@ -101,9 +101,7 @@ public partial class PlayViewModel : ObservableObject
         App.Store.timeLeft = RemainingSeconds;
         App.Store.quizName = Quiz.Title;
 
-        // FIXME: For unknown reason, the line below doesn't do anything
-        // await Shell.Current.GoToAsync(nameof(ResultPage));
-        App.Current.MainPage = new NavigationPage(new ResultPage());
+        await Shell.Current.GoToAsync(nameof(ResultPage));
     }
 
     private void Timer_Tick(object sender, EventArgs e)
@@ -113,11 +111,11 @@ public partial class PlayViewModel : ObservableObject
             RemainingSeconds--;
             Console.WriteLine($"Remaining seconds: {RemainingSeconds}");
 
-            if (RemainingSeconds == 0)
+            if (RemainingSeconds == 0 && Shell.Current.CurrentPage is PlayPage)
             {
                 timer.Stop();
                 Console.WriteLine("Before going to result");
-                GoToResult();
+                await GoToResult();
                 Console.WriteLine("Went to result");
             }
         });

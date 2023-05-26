@@ -73,13 +73,13 @@ public class Db : DbContext
     {
         var answers1 = new List<Answer>
         {
-            new Answer { Id = 1, Content = "tak" },
             new Answer
             {
-                Id = 2,
-                Content = "nie",
+                Id = 1,
+                Content = "tak",
                 IsCorrect = true
             },
+            new Answer { Id = 2, Content = "nie", },
             new Answer
             {
                 Id = 3,

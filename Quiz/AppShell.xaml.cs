@@ -10,6 +10,7 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(PlayPage), typeof(PlayPage));
         Routing.RegisterRoute(nameof(CreatePage), typeof(CreatePage));
+        Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));
     }
 
     ShellContent _previousShellContent;
