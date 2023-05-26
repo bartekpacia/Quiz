@@ -4,9 +4,9 @@ namespace Quiz;
 
 public partial class ResultPage : ContentPage
 {
-    public ResultPage(ResultViewModel vm)
+    public ResultPage()
     {
         InitializeComponent();
-        BindingContext = vm;
+        // BindingContext = vm;
     }
 }
