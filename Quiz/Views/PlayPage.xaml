@@ -9,8 +9,6 @@
     x:DataType="viewmodel:PlayViewModel">
 
     <VerticalStackLayout Padding="32">
-        <Label Text="Remaining seconds: " />
-        <Label Text="{Binding RemainingSeconds}" />
         <Label
             HorizontalOptions="Center"
             Text="{Binding CurrentQuestion.Content}"
