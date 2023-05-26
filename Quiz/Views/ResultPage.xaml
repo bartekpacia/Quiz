@@ -11,5 +11,8 @@
             HorizontalOptions="Center"
             Text="{Binding Message}"
             VerticalOptions="Center" />
+
+       <Button Command="{Binding GoToMainPageCommand}" Text="Back to home" />
+
     </VerticalStackLayout>
 </ContentPage>
