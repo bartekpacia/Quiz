@@ -101,7 +101,7 @@ public partial class PlayViewModel : ObservableObject
         App.Store.timeLeft = RemainingSeconds;
         App.Store.quizName = Quiz.Title;
 
-        App.Current.MainPage = new NavigationPage(new ResultPage());
+        await Shell.Current.GoToAsync(nameof(ResultPage));
     }
 
     private void Timer_Tick(object sender, EventArgs e)
