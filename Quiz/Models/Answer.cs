@@ -10,4 +10,5 @@ public class Answer
     public string Content { get; set; }
     public int QuestionId { get; set; }
     public bool IsCorrect { get; set; } = false;
+    public bool IsSelected { get; set; } = false;
 }

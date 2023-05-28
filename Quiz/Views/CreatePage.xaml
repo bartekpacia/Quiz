@@ -12,6 +12,10 @@
 
         <VerticalStackLayout Spacing="16">
 
+            <Label
+                FontSize="16"
+                Text="{Binding ErrorMessage}"
+                TextColor="Red" />
             <Entry Placeholder="Quiz name" Text="{Binding Quiz.Title}" />
 
             <Button Command="{Binding SaveQuizCommand}" Text="Save changes and create quiz" />
@@ -63,8 +67,8 @@
                                     WidthRequest="100" />
                             </FlexLayout>
 
-                            <CollectionView Margin="20,10,0,0" ItemsSource="{Binding Answers}">
-                                <CollectionView.ItemTemplate>
+                            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Answers}">
+                                <BindableLayout.ItemTemplate>
                                     <DataTemplate x:DataType="model:Answer">
                                         <HorizontalStackLayout Spacing="10">
                                             <Label Padding="4" Text="Answer" />
@@ -74,9 +78,8 @@
 
                                     </DataTemplate>
 
-                                </CollectionView.ItemTemplate>
-
-                            </CollectionView>
+                                </BindableLayout.ItemTemplate>
+                            </VerticalStackLayout>
 
 
                         </VerticalStackLayout>

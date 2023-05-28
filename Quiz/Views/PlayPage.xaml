@@ -3,51 +3,46 @@
     x:Class="Quiz.PlayPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Quiz.Models"
     xmlns:viewmodel="clr-namespace:Quiz.ViewModels"
     Title="PlayPage"
     x:DataType="viewmodel:PlayViewModel">
 
     <VerticalStackLayout Padding="32">
-
+        <Label Text="Remaining seconds: " />
+        <Label Text="{Binding RemainingSeconds}" />
         <Label
             HorizontalOptions="Center"
-            Text="Which city is the capital of Poland?"
+            Text="{Binding CurrentQuestion.Content}"
             VerticalOptions="Center" />
-
-        <CollectionView
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            ItemsSource="{Binding Answers}"
-            SelectionMode="Single">
+        <Button Command="{Binding GoToNextPageCommand}" Text="Go to next question" />
+        <CollectionView ItemsSource="{Binding CurrentAnswers}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
 
-                    <Border>
-                        <!--  This gesture recognizer breaks Visual State Manager  -->
-                        <!--<Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectAnswer}" CommandParameter="{Binding .}" />
+                <DataTemplate x:DataType="model:Answer">
+                    <Border x:Name="Border">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="16" />
+                        </Border.StrokeShape>
+                        <HorizontalStackLayout Padding="16">
+                            <Button
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:PlayViewModel}}, Path=SelectionChangedCommand}"
+                                CommandParameter="{Binding Id}"
+                                Text="Select" />
+                            <CheckBox IsChecked="{Binding IsSelected}" IsEnabled="False" />
+                            <Label Margin="16" Text="{Binding Content}" />
 
-                        </Border.GestureRecognizers>-->
-
-                        <Label Text="{Binding .}" />
-
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="Some States">
-                                <VisualState Name="Normal" />
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="Red" />
-                                    </VisualState.Setters>
-                                </VisualState>
-
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                        </HorizontalStackLayout>
                     </Border>
 
-
                 </DataTemplate>
-
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
+
+
+
+
+
+
 </ContentPage>
