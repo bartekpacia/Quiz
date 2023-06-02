@@ -45,7 +45,8 @@ public partial class CreateViewModel : ObservableObject
 
         for (int i = 0; i < 4; i++)
         {
-            emptyAnswers.Add(new Answer() { Content = $"Answer {i}", Index = i });
+            Random rnd = new Random();
+            emptyAnswers.Add(new Answer() { Content = $"Answer {i}", Index = i, Id=rnd.Next(10, 1000000) });
         }
 
         Questions.Add(

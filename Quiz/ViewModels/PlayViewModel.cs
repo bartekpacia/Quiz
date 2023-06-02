@@ -23,6 +23,7 @@ public partial class PlayViewModel : ObservableObject
     [RelayCommand]
     void SelectionChanged(int id)
     {
+        Console.WriteLine(id);
         var found = CurrentAnswers.FirstOrDefault(answer => answer.Id == id);
         var i = CurrentAnswers.IndexOf(found);
 
