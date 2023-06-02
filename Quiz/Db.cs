@@ -45,9 +45,9 @@ public class Db : DbContext
                 Content = "nie",
                 IsCorrect = true
             },
-            new Answer { Id = 10, Content = "nie" },
-            new Answer { Id = 11, Content = "nie" },
-            new Answer { Id = 12, Content = "nie" }
+            new Answer { Id = 10, Content = "tak" },
+            new Answer { Id = 11, Content = "jeszcze jak!" },
+            new Answer { Id = 12, Content = "bardzo dobre" },
         };
 
         var questions = new List<Question>
@@ -55,16 +55,12 @@ public class Db : DbContext
             new Question
             {
                 Id = 1,
-                Content = "TEstowe pytanie",
+                Content = "Czy MAUI i WFP to dobre frameworki?",
                 Answers = answers
             }
         };
 
-        var quiz = new QuizModel
-        {
-            Title = "Czy maui i wpf powinny jeszcze istnieć?",
-            Questions = questions
-        };
+        var quiz = new QuizModel { Title = "Windowsowe frameworki UI", Questions = questions };
 
         return quiz;
     }
@@ -76,40 +72,25 @@ public class Db : DbContext
             new Answer
             {
                 Id = 1,
-                Content = "tak",
+                Content = "1920",
                 IsCorrect = true
             },
-            new Answer { Id = 2, Content = "nie", },
-            new Answer
-            {
-                Id = 3,
-                Content = "jeszcze jak",
-                IsCorrect = true
-            },
-            new Answer
-            {
-                Id = 4,
-                Content = "okrutnik",
-                IsCorrect = true
-            }
+            new Answer { Id = 2, Content = "1918" },
+            new Answer { Id = 3, Content = "1925" },
+            new Answer { Id = 4, Content = "2004" }
         };
 
         var answers2 = new List<Answer>
         {
-            new Answer { Id = 5, Content = "mało" },
+            new Answer { Id = 5, Content = "Warszawa" },
             new Answer
             {
                 Id = 6,
-                Content = "dużo",
+                Content = "Wadowice",
                 IsCorrect = true
             },
-            new Answer
-            {
-                Id = 7,
-                Content = "10 ton",
-                IsCorrect = true
-            },
-            new Answer { Id = 8, Content = "5 kg" }
+            new Answer { Id = 7, Content = "Kraków" },
+            new Answer { Id = 8, Content = "Gliwice" }
         };
 
         var questions = new List<Question>
@@ -117,13 +98,13 @@ public class Db : DbContext
             new Question
             {
                 Id = 2,
-                Content = "Czy wiedział?",
+                Content = "Kiedy się urodził?",
                 Answers = answers1
             },
             new Question
             {
                 Id = 3,
-                Content = "Ile ton kremówek spożył?",
+                Content = "Gdzie się urodził?",
                 Answers = answers2
             }
         };
