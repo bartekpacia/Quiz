@@ -100,6 +100,7 @@ public partial class PlayViewModel : ObservableObject
         App.Store.totalQuestions = Quiz.Questions.Count;
         App.Store.timeLeft = RemainingSeconds;
         App.Store.quizName = Quiz.Title;
+        timer.Stop();
 
         await Shell.Current.GoToAsync(nameof(ResultPage));
     }
@@ -109,6 +110,7 @@ public partial class PlayViewModel : ObservableObject
         MainThread.BeginInvokeOnMainThread(async () =>
         {
             RemainingSeconds--;
+
             Console.WriteLine($"Remaining seconds: {RemainingSeconds}");
 
             if (RemainingSeconds == 0 && Shell.Current.CurrentPage is PlayPage)
