@@ -83,7 +83,7 @@ public partial class PlayViewModel : ObservableObject
     IDispatcherTimer timer;
 
     [ObservableProperty]
-    public int remainingSeconds = 10;
+    public int remainingSeconds = 60;
 
     public void StartTimer()
     {
